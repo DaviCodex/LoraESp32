@@ -24,9 +24,9 @@ YOU MUST USE THE ACTUAL GPIO NUMBER
 #define PIN_RX 16   // Serial2 RX (connect this to the EBYTE Tx pin)
 #define PIN_TX 17   // Serial2 TX pin (connect this to the EBYTE Rx pin)
 
-#define PIN_M0 4    // D4 on the board (possibly pin 24)
-#define PIN_M1 22   // D2 on the board (possibly called pin 22)
-#define PIN_AX 21   // D15 on the board (possibly called pin 21)
+#define PIN_M0 22    // D4 on the board (possibly pin 24)
+#define PIN_M1 23   // D2 on the board (possibly called pin 22)
+#define PIN_AX 15   // D15 on the board (possibly called pin 21)
 
 
 // i recommend putting this code in a .h file and including it
@@ -63,13 +63,13 @@ void setup() {
 
   // Serial.println(Transceiver.GetAirDataRate());
   // Serial.println(Transceiver.GetChannel());
-  // Transceiver.SetAddressH(1);
-  // Transceiver.SetAddressL(1);
-  // Chan = 15;
-  // Transceiver.SetChannel(Chan);
+  Transceiver.SetAddressH(0);
+  Transceiver.SetAddressL(1);
+  Chan = 15;
+  Transceiver.SetChannel(Chan);
   // save the parameters to the unit,
   // Transceiver.SetPullupMode(1);
-  // Transceiver.SaveParameters(PERMANENT);
+  Transceiver.SaveParameters(PERMANENT);
 
   // you can print all parameters and is good for debugging
   // if your units will not communicate, print the parameters
@@ -101,8 +101,6 @@ void loop() {
 
     // dump out what was just received
     Serial.print("Count: "); Serial.println(MyData.Count);
-    Serial.print("Bits: "); Serial.println(MyData.Bits);
-    Serial.print("Volts: "); Serial.println(MyData.Volts);
     // if you got data, update the checker
     Last = millis();
 
